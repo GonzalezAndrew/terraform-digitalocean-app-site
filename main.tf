@@ -83,7 +83,7 @@ resource "digitalocean_app" "this" {
             }
           }
 
-          //docs state 'route' but it should be 'routes'
+          // docs state 'route' but it should be 'routes'. refer to provider for details https://github.com/digitalocean/terraform-provider-digitalocean/blob/f077a0792731b432d16b811cd17cdd6a5de4e115/vendor/github.com/digitalocean/godo/apps.gen.go#L291
           dynamic "routes" {
             for_each = length(keys(lookup(static_site.value, "routes", {}))) == 0 ? [] : [lookup(static_site.value, "routes", {})]
 
@@ -95,7 +95,7 @@ resource "digitalocean_app" "this" {
           dynamic "cors" {
             for_each = lookup(static_site.value, "cors", [])
             content {
-              // the following needs to be deleted from the docs https://github.com/digitalocean/terraform-provider-digitalocean/blob/f077a0792731b432d16b811cd17cdd6a5de4e115/vendor/github.com/digitalocean/godo/apps.gen.go#L430
+              // the following needs to be deleted from the docs, refer provider for details https://github.com/digitalocean/terraform-provider-digitalocean/blob/f077a0792731b432d16b811cd17cdd6a5de4e115/vendor/github.com/digitalocean/godo/apps.gen.go#L430
               //allow_origins = lookup(cors.value, "allow_origins", null)
               //exact = lookup(cors.value, "exact", null)
               //prefix = lookup(cors.value, "prefix", null)
