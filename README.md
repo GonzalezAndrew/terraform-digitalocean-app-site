@@ -30,9 +30,16 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_spec"></a> [spec](#input\_spec) | (Required) A DigitalOcean App spec describing the app. | `any` | <pre>[<br>  {<br>    "domain": {<br>      "name": "test.gonzalezandrew.com",<br>      "type": "PRIMARY",<br>      "zone": "gonzalezandrew.com"<br>    },<br>    "name": "test",<br>    "region": "nyc1",<br>    "static_site": {<br>      "build_command": "hugo -d public",<br>      "environment_slug": "hugo",<br>      "github": {<br>        "branch": "master",<br>        "deploy_on_push": true,<br>        "repo": "GonzalezAndrew/blog"<br>      },<br>      "name": "blog",<br>      "routes": {<br>        "path": "/"<br>      },<br>      "source_dir": "/"<br>    }<br>  }<br>]</pre> | no |
+| <a name="input_spec"></a> [spec](#input\_spec) | (Required) A DigitalOcean App spec describing the app. | `any` | `[]` | no |
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_active_deployment_id"></a> [active\_deployment\_id](#output\_active\_deployment\_id) | The ID the app's currently active deployment. |
+| <a name="output_created_at"></a> [created\_at](#output\_created\_at) | The date and time of when the app was created. |
+| <a name="output_default_ingress"></a> [default\_ingress](#output\_default\_ingress) | The default URL to access the app. |
+| <a name="output_id"></a> [id](#output\_id) | ID of the app. |
+| <a name="output_live_url"></a> [live\_url](#output\_live\_url) | The live URL of the app. |
+| <a name="output_updated_at"></a> [updated\_at](#output\_updated\_at) | The date and time of when the app was last updated. |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

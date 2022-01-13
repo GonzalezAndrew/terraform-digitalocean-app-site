@@ -1,4 +1,4 @@
-module "hugo-blog" {
+module "hugo_blog" {
   source = "../"
   spec = [{
     name   = "test"
