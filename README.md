@@ -1,6 +1,11 @@
-# Terraform DigitalOcean Hugo App Platform Module
+# Terraform DigitalOcean Static Site App Platform Module
 
-A Terraform module for deploying a Hugo static website to DigitalOcean App Platform.
+A Terraform module for deploying a static site to DigitalOcean App Platform.
+
+---
+
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-success?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
+![License: MIT](https://img.shields.io/badge/License-MIT-red.svg)
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
@@ -43,3 +48,40 @@ No modules.
 | <a name="output_live_url"></a> [live\_url](#output\_live\_url) | The live URL of the app. |
 | <a name="output_updated_at"></a> [updated\_at](#output\_updated\_at) | The date and time of when the app was last updated. |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
+## Example
+
+Deploy a Hugo static site using the module.
+
+```hcl
+module "hugo_blog" {
+  source = "../"
+  spec = [{
+    name   = "test"
+    region = "nyc1"
+
+    domain = {
+      name = "test.gonzalezandrew.com"
+      type = "PRIMARY"
+      zone = "gonzalezandrew.com"
+    }
+
+    static_site = {
+      name             = "blog"
+      build_command    = "hugo -d public"
+      environment_slug = "hugo"
+      source_dir       = "/"
+
+      github = {
+        repo           = "GonzalezAndrew/blog"
+        branch         = "master"
+        deploy_on_push = true
+      }
+
+      routes = {
+        path = "/"
+      }
+    }
+  }]
+}
+```
